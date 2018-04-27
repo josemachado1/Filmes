@@ -14,7 +14,7 @@ namespace Filmes4All.Models
             FilmesCarrinho = new HashSet<Carrinho>();
             ListaDeAtores = new HashSet<Elenco>();
             ListaDeEncomendas = new HashSet<Encomenda>();
-            ListaDeEncomendasF = new HashSet<EncomendasFilmes>();
+            ListaDeEncomendasFilmes = new HashSet<EncomendasFilmes>();
         }
 
         [Key]
@@ -24,13 +24,13 @@ namespace Filmes4All.Models
 
         public int Ano { get; set; }
 
-        public string Descricao { get; set; }
-
         public string Capa { get; set; }
+
+        public string Descricao { get; set; }
 
         public double PrecoVenda { get; set; }
 
-        public double IMDB { get; set; }
+        public double Pontuacao { get; set; }
 
         public virtual ICollection<Carrinho> FilmesCarrinho { get; set; }
 
@@ -38,7 +38,7 @@ namespace Filmes4All.Models
 
         public virtual ICollection<Encomenda> ListaDeEncomendas { get; set; }
 
-        public virtual ICollection<EncomendasFilmes> ListaDeEncomendasF { get; set; }
+        public virtual ICollection<EncomendasFilmes> ListaDeEncomendasFilmes { get; set; }
 
     }
 }

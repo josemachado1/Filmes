@@ -13,7 +13,7 @@ namespace Filmes4All.Models
         public Encomenda()
         {
             ListaDeFilmesEncomendados = new HashSet<Filmes>();
-            ListaDeFilmesE = new HashSet<EncomendasFilmes>();
+            ListaDeEncomendasFilmes = new HashSet<EncomendasFilmes>();
         }
 
         [Key]
@@ -35,7 +35,7 @@ namespace Filmes4All.Models
         public virtual ICollection<Filmes> ListaDeFilmesEncomendados { get; set; }
         //***********************************************************************
 
-        public virtual ICollection<EncomendasFilmes> ListaDeFilmesE { get; set; }
+        public virtual ICollection<EncomendasFilmes> ListaDeEncomendasFilmes { get; set; }
 
     }
 }

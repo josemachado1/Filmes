@@ -15,8 +15,9 @@ namespace Filmes4All.Models
         public int Quantidade { get; set; }
 
         //FK Filmes
-        [ForeignKey("Filmes")]
+        [ForeignKey("Filme")]
         public int FilmeFK { get; set; }
         public virtual Filmes Filme { get; set; }
+
     }
 }

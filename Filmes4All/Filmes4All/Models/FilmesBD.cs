@@ -9,7 +9,7 @@ namespace Filmes4All.Models
     public class FilmesBD : DbContext
     {
 
-        public FilmesBD() :base("FilmesBDConnectionString")
+        public FilmesBD() : base("FilmesBDConnectionString")
         {
 
         }
