@@ -14,6 +14,8 @@ namespace Filmes4All.Models
 
         public int Quantidade { get; set; }
 
+        public double PrecoCompra { get; set; }
+    
         //FK Filmes
         [ForeignKey("Filme")]
         public int FilmeFK { get; set; }

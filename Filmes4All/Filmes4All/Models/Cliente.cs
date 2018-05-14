@@ -15,12 +15,16 @@ namespace Filmes4All.Models
 
 
         [Key]
+
         public int ID { get; set; }
 
-        public int NIF { get; set; }
-
+        [Required(ErrorMessage = "o {0} é de preenchimento obrigatório!")] // o atributo nome é de preenchimento obrigatorio
         public string Nome { get; set; }
 
+        public string Telemovel { get; set; }
+
+        public DateTime DataNascimento { get; set; }
+        
         public string Morada { get; set; }
 
         public virtual ICollection<Encomenda> ListaDeEncomendasClientes { get; set; }

@@ -12,7 +12,7 @@ namespace Filmes4All.Models
 
         public Encomenda()
         {
-            ListaDeFilmesEncomendados = new HashSet<Filmes>();
+          //  ListaDeFilmesEncomendados = new HashSet<Filmes>();
             ListaDeEncomendasFilmes = new HashSet<EncomendasFilmes>();
         }
 
@@ -29,10 +29,11 @@ namespace Filmes4All.Models
         public virtual Cliente Cliente { get; set; }
 
 
+
+
         //***********************************************************************
         // definição do atributo que será utilizado para exprimir o relacionamento
         // com os objetos da classe Filmes
-        public virtual ICollection<Filmes> ListaDeFilmesEncomendados { get; set; }
         //***********************************************************************
 
         public virtual ICollection<EncomendasFilmes> ListaDeEncomendasFilmes { get; set; }

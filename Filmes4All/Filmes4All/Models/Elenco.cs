@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -22,6 +23,13 @@ namespace Filmes4All.Models
         public string Ator1 { get; set; }
 
         public string Ator2 { get; set; }
+
+
+
+        //FK Filmes
+        [ForeignKey("Filme")]
+        public int FilmeFK { get; set; }
+        public virtual Filmes Filme { get; set; }
 
         //***********************************************************************
         // definição do atributo que será utilizado para exprimir o relacionamento

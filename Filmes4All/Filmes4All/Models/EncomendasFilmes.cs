@@ -21,17 +21,21 @@ namespace Filmes4All.Models
         //***********************************************************************
         // definição da chave forasteira (FK) que referencia a classe Encomendas
         //***********************************************************************
-        [ForeignKey("Encomendas")]
-        public Encomenda Encomendas { get; set; }
-        public int EncomendaFK { get; set; }
+        [ForeignKey("Encomenda")]  // A
+        public int EncomendasFK { get; set; }  // B
+        public virtual Encomenda Encomenda { get; set; }  // C
 
         //***********************************************************************
         // definição da chave forasteira (FK) que referencia a classe Filmes
         //***********************************************************************
-        [ForeignKey("Filme")]
-        public Filmes Filme { get; set; }
-        public int FilmesFK { get; set; }
+        [ForeignKey("FilmesFK")]  // A
+        public virtual Filmes Filme { get; set; }  // B
+        public int FilmesFK { get; set; }  // C
         //***********************************************************************
+
+    //    ( (A * B ) *  C ) 
+
+
 
     }
 }
