@@ -106,6 +106,16 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="imgFilmes\AmorDeImproviso.jpg" />
+    <Content Include="imgFilmes\A_Forma_da_Agua.jpg" />
+    <Content Include="imgFilmes\Coco.jpg" />
+    <Content Include="imgFilmes\Dunkirk.jpg" />
+    <Content Include="imgFilmes\Foge.jpg" />
+    <Content Include="imgFilmes\Ladybird.jpg" />
+    <Content Include="imgFilmes\Logan.jpg" />
+    <Content Include="imgFilmes\Mulher_Maravilha.jpg" />
+    <Content Include="imgFilmes\SW_TLJ.jpg" />
+    <Content Include="imgFilmes\The_Florida_Project.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
