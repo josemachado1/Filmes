@@ -208,6 +208,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ClientesController.cs" />
     <Compile Include="Controllers\FilmesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -221,7 +222,8 @@
     <Compile Include="Models\AdminViewModel.cs" />
     <Compile Include="Models\Carrinho.cs" />
     <Compile Include="Models\Cliente.cs" />
-    <Compile Include="Models\Elenco.cs" />
+    <Compile Include="Models\FilmesParticipantes.cs" />
+    <Compile Include="Models\Participantes.cs" />
     <Compile Include="Models\Encomenda.cs" />
     <Compile Include="Models\EncomendasFilmes.cs" />
     <Compile Include="Models\Filmes.cs" />
@@ -276,6 +278,11 @@
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
     <Content Include="Views\Account\DisplayEmail.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
+    <Content Include="Views\Clientes\Create.cshtml" />
+    <Content Include="Views\Clientes\Delete.cshtml" />
+    <Content Include="Views\Clientes\Details.cshtml" />
+    <Content Include="Views\Clientes\Edit.cshtml" />
+    <Content Include="Views\Clientes\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

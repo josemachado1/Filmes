@@ -44,13 +44,16 @@ namespace Filmes4All.Models
 
         public virtual DbSet<Cliente> Cliente { get; set; }
 
-        public virtual DbSet<Elenco> Elenco { get; set; }
+        public virtual DbSet<Participantes> Participantes { get; set; }
 
         public virtual DbSet<Encomenda> Encomenda { get; set; }
 
         public virtual DbSet<EncomendasFilmes> EncomendasFilmes { get; set; } // tabela que irá exprimir o relacionamento entre as classes Encomendas e Filmes
 
         public virtual DbSet<Filmes> Filmes { get; set; }
+
+        public virtual DbSet<FilmesParticipantes> FilmesParticipantes { get; set; } // tabela que irá exprimir o relacionamento entre as classes Participantes e Filmes
+
 
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

@@ -23,12 +23,6 @@ namespace Filmes4All.Models
 
         public double Desconto { get; set; }
 
-        //FK Cliente
-        [ForeignKey("Cliente")]
-        public int ClienteFK { get; set; }
-        public virtual Cliente Cliente { get; set; }
-
-
 
 
         //***********************************************************************

@@ -12,7 +12,7 @@ namespace Filmes4All.Models
         public Filmes()
         {
             FilmesCarrinho = new HashSet<Carrinho>();
-            ListaDeAtores = new HashSet<Elenco>();
+            ListaDeFilmesParticipantes = new HashSet<FilmesParticipantes>();
             ListaDeEncomendasFilmes = new HashSet<EncomendasFilmes>();
         }
 
@@ -36,7 +36,7 @@ namespace Filmes4All.Models
 
         public virtual ICollection<Carrinho> FilmesCarrinho { get; set; }
 
-        public virtual ICollection<Elenco> ListaDeAtores { get; set; }
+        public virtual ICollection<FilmesParticipantes> ListaDeFilmesParticipantes { get; set; }
 
         public virtual ICollection<EncomendasFilmes> ListaDeEncomendasFilmes { get; set; }
 

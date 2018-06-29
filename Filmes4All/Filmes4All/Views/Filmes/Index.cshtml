@@ -12,7 +12,7 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Nome)
+            @Html.DisplayNameFor(model => model.Titulo)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Ano)
@@ -32,30 +32,33 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var filme in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Nome)
+            @Html.DisplayFor(modelItem => filme.Titulo)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Ano)
+            @Html.DisplayFor(modelItem => filme.Ano)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Capa)
+           @* @Html.DisplayFor(modelItem => filme.Capa)*@
+            <a href="~/imgFilmes/@filme.Capa" target="_blank">
+                <img src="~/imgFilmes/@filme.Capa" width="100" height="100" />
+            </a>
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Descricao)
+            @Html.DisplayFor(modelItem => filme.Descricao)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.PrecoVenda)
+            @Html.DisplayFor(modelItem => filme.PrecoVenda)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Pontuacao)
+            @Html.DisplayFor(modelItem => filme.Pontuacao)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+            @Html.ActionLink("Edit", "Edit", new { id=filme.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=filme.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=filme.ID })
         </td>
     </tr>
 }

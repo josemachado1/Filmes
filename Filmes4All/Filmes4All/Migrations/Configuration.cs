@@ -38,25 +38,46 @@ namespace Filmes4All.Migrations
             filmes.ForEach(ff => context.Filmes.AddOrUpdate(f => f.Titulo, ff));
             context.SaveChanges();
 
-/*
+
+
             //*********************************************************************
-            // adiciona ELENCO
-            var elenco = new List<Elenco> {
-   new Elenco {ID=1, Realizador="Greta Gerwig", Ator1="Saoirse Ronan", Ator2="Laurie Metcalf",FilmeFK=1},
-   new Elenco {ID=2, Realizador="Jordan Peele", Ator1="Daniel Kaluuya", Ator2="Allison Williams",FilmeFK=2},
-   new Elenco {ID=3, Realizador="Christopher Nolan", Ator1="Fionn Whitehead", Ator2="Barry Keoghan",FilmeFK=3},
-   new Elenco {ID=4, Realizador="Lee Unkrich", Ator1="Anthony Gonzalez", Ator2="Gael García Bernal",FilmeFK=4},
-   new Elenco {ID=5, Realizador="Michael Showalter", Ator1="Kumail Nanjiani", Ator2="Zoe Kazan",FilmeFK=5},
-   new Elenco {ID=6, Realizador="Patty Jenkins", Ator1="Gal Gadot", Ator2="Chris Pine",FilmeFK=6},
-   new Elenco {ID=7, Realizador="James Mangold", Ator1="Hugh Jackman", Ator2="Patrick Stewart",FilmeFK=7},
-   new Elenco {ID=8, Realizador="Rian Johnson", Ator1="Daisy Ridley", Ator2="John Boyega",FilmeFK=8},
-   new Elenco {ID=9, Realizador="Guillermo del Toro", Ator1="Sally Hawkins", Ator2="Octavia Spencer",FilmeFK=9},
-   new Elenco {ID=10, Realizador="Sean Baker", Ator1="Brooklynn Prince", Ator2="Bria Vinaite",FilmeFK=10},
+            // adiciona PARTICIPANTES
+            var participantes = new List<Participantes> {
+   new Participantes {ID=1, NomeParticipante="Saoirse Ronan",IdadeParticipante=1},
+   new Participantes {ID=2, NomeParticipante="Daniel Kaluuya",IdadeParticipante=2},
+   new Participantes {ID=3, NomeParticipante="Fionn Whitehead",IdadeParticipante=3},
+   new Participantes {ID=4, NomeParticipante="Anthony Gonzalez",IdadeParticipante=4},
+   new Participantes {ID=5, NomeParticipante="Kumail Nanjiani",IdadeParticipante=5},
+   new Participantes {ID=6, NomeParticipante="Gal Gadot",IdadeParticipante=6},
+   new Participantes {ID=7, NomeParticipante="Hugh Jackman",IdadeParticipante=7},
+   new Participantes {ID=8, NomeParticipante="Daisy Ridley",IdadeParticipante=8},
+   new Participantes {ID=9, NomeParticipante="Sally Hawkins",IdadeParticipante=9},
+   new Participantes {ID=10, NomeParticipante="Brooklynn Prince",IdadeParticipante=10}
 };
-            elenco.ForEach(ee => context.Elenco.AddOrUpdate(e => e.ID, ee));
+            participantes.ForEach(pp => context.Participantes.AddOrUpdate(p => p.ID, pp));
             context.SaveChanges();
 
-  */      
+
+            //*********************************************************************
+            // adiciona FILMESPARTICIPANTES
+            var filmesPart = new List<FilmesParticipantes> {
+   new FilmesParticipantes {ID=1, Tarefa="Actor" ,Personagem="Lady Bird McPherson",FilmesFK=1,ParticipantesFK=1},
+   new FilmesParticipantes {ID=2, Tarefa="Actor" ,Personagem="Chris Washington",FilmesFK=2,ParticipantesFK=2},
+   new FilmesParticipantes {ID=3, Tarefa="Actor" ,Personagem="Tommy",FilmesFK=3,ParticipantesFK=3},
+   new FilmesParticipantes {ID=4, Tarefa="Actor" ,Personagem="Miguel",FilmesFK=4,ParticipantesFK=4},
+   new FilmesParticipantes {ID=5, Tarefa="Actor" ,Personagem="Kumail",FilmesFK=5,ParticipantesFK=5},
+   new FilmesParticipantes {ID=6, Tarefa="Actor" ,Personagem="Diana",FilmesFK=6,ParticipantesFK=6},
+   new FilmesParticipantes {ID=7, Tarefa="Actor" ,Personagem="Logan",FilmesFK=7,ParticipantesFK=7},
+   new FilmesParticipantes {ID=8, Tarefa="Actor" ,Personagem="Rey",FilmesFK=8,ParticipantesFK=8},
+   new FilmesParticipantes {ID=9, Tarefa="Actor" ,Personagem="Elisa Esposito",FilmesFK=9,ParticipantesFK=9},
+   new FilmesParticipantes {ID=10, Tarefa="Actor" ,Personagem="Moonee",FilmesFK=10,ParticipantesFK=10}
+};
+            filmesPart.ForEach(pp => context.FilmesParticipantes.AddOrUpdate(p => p.ID, pp));
+            context.SaveChanges();
+
+
+
+
             //*********************************************************************
             // adiciona Cliente
             var cliente = new List<Cliente> {
@@ -75,15 +96,34 @@ namespace Filmes4All.Migrations
             //*********************************************************************
             // adiciona Encomedas
             var encomenda = new List<Encomenda> {
-   new Encomenda {ID=1, Data=new DateTime(2018,2,21), Desconto=20, ClienteFK=1 },
-   new Encomenda {ID=2, Data=new DateTime(2017,7,19), Desconto=10, ClienteFK=2 },
-   new Encomenda {ID=3, Data=new DateTime(2017,12,3), Desconto=15, ClienteFK=3 },
-   new Encomenda {ID=4, Data=new DateTime(2017,9,24), Desconto=30, ClienteFK=4 },
-   new Encomenda {ID=5, Data=new DateTime(2017,8,17), Desconto=5, ClienteFK=5 },
-   new Encomenda {ID=6, Data=new DateTime(2017,8,22), Desconto=25, ClienteFK=6 }
+   new Encomenda {ID=1, Data=new DateTime(2018,2,21), Desconto=20},
+   new Encomenda {ID=2, Data=new DateTime(2017,7,19), Desconto=10},
+   new Encomenda {ID=3, Data=new DateTime(2017,12,3), Desconto=15},
+   new Encomenda {ID=4, Data=new DateTime(2017,9,24), Desconto=30},
+   new Encomenda {ID=5, Data=new DateTime(2017,8,17), Desconto=5},
+   new Encomenda {ID=6, Data=new DateTime(2017,8,22), Desconto=25}
 
 };
-            encomenda.ForEach(ecc => context.Encomenda.AddOrUpdate(ec => ec.ID, ecc));
+            encomenda.ForEach(ee => context.Encomenda.AddOrUpdate(e => e.ID, ee));
+            context.SaveChanges();
+
+
+
+
+
+
+            //*********************************************************************
+            // adiciona EncomedasFilmes
+            var encFilm = new List<EncomendasFilmes> {
+   new EncomendasFilmes {ID=1, Quantidade=1 ,PrecoCompra=5,EncomendasFK=1,FilmesFK=1 },
+   new EncomendasFilmes {ID=2, Quantidade=2 ,PrecoCompra=10,EncomendasFK=2,FilmesFK=2},
+   new EncomendasFilmes {ID=3, Quantidade=1 ,PrecoCompra=5,EncomendasFK=3,FilmesFK=3},
+   new EncomendasFilmes {ID=4, Quantidade=3 ,PrecoCompra=15,EncomendasFK=4,FilmesFK=4 },
+   new EncomendasFilmes {ID=5, Quantidade=1 ,PrecoCompra=5,EncomendasFK=5,FilmesFK=5},
+   new EncomendasFilmes {ID=6, Quantidade=2 ,PrecoCompra=10,EncomendasFK=6,FilmesFK=6 }
+
+};
+            encFilm.ForEach(ecf => context.EncomendasFilmes.AddOrUpdate(ef => ef.ID, ecf));
             context.SaveChanges();
 
 
@@ -91,12 +131,12 @@ namespace Filmes4All.Migrations
             //*********************************************************************
             // adiciona Carrinho
             var carrinho = new List<Carrinho> {
-   new Carrinho {ID=1, Quantidade=1, PrecoCompra=5},
-   new Carrinho {ID=2, Quantidade=5, PrecoCompra=5},
-   new Carrinho {ID=3, Quantidade=3, PrecoCompra=5},
-   new Carrinho {ID=4, Quantidade=6, PrecoCompra=5},
-   new Carrinho {ID=5, Quantidade=2, PrecoCompra=5},
-   new Carrinho {ID=6, Quantidade=4, PrecoCompra=5}
+   new Carrinho {ID=1, Quantidade=1, PrecoCompra=5,ClienteFK=1},
+   new Carrinho {ID=2, Quantidade=5, PrecoCompra=5,ClienteFK=2},
+   new Carrinho {ID=3, Quantidade=3, PrecoCompra=5,ClienteFK=3},
+   new Carrinho {ID=4, Quantidade=6, PrecoCompra=5,ClienteFK=4},
+   new Carrinho {ID=5, Quantidade=2, PrecoCompra=5,ClienteFK=5},
+   new Carrinho {ID=6, Quantidade=4, PrecoCompra=5,ClienteFK=6},
 
 };
             carrinho.ForEach(car => context.Carrinho.AddOrUpdate(ca => ca.ID, car));

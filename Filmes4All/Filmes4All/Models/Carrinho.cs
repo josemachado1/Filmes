@@ -17,9 +17,10 @@ namespace Filmes4All.Models
         public double PrecoCompra { get; set; }
     
         //FK Filmes
-        [ForeignKey("Cliente")]
-        public int ClienteFK { get; set; }
+        [ForeignKey("ClienteFK")]
         public virtual Cliente Cliente { get; set; }
+        public int ClienteFK { get; set; }
+
 
     }
 }

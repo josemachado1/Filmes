@@ -10,6 +10,7 @@ namespace Filmes4All
         public void Configuration(IAppBuilder app)
         {
             ConfigureAuth(app);
+            iniciaAplicacao();
         }
 
 
@@ -25,13 +26,25 @@ namespace Filmes4All
             var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(db));
             var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
 
-            // criar a Role 'Admin'
+            // criar a Role 'Clente'
             if (!roleManager.RoleExists("Cliente"))
             {
                 // não existe a 'role'
                 // então, criar essa role
                 var role = new IdentityRole();
                 role.Name = "Cliente";
+                roleManager.Create(role);
+            }
+
+
+
+            // criar a Role 'Admin'
+            if (!roleManager.RoleExists("Admin"))
+            {
+                // não existe a 'role'
+                // então, criar essa role
+                var role = new IdentityRole();
+                role.Name = "Admin";
                 roleManager.Create(role);
             }
 
@@ -49,6 +62,11 @@ namespace Filmes4All
             {
                 var result1 = userManager.AddToRole(user.Id, "Cliente");
             }
+
+
+
+
+
         }
 
 
