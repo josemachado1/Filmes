@@ -12,7 +12,7 @@ namespace Filmes4All.Controllers
 {
     public class FilmesController : Controller
     {
-        private FilmesBD db = new FilmesBD();
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Filmes
         public ActionResult Index()
@@ -109,10 +109,25 @@ namespace Filmes4All.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Filmes filmes = db.Filmes.Find(id);
-            db.Filmes.Remove(filmes);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            Filmes filme = db.Filmes.Find(id);
+            db.Filmes.Remove(filme);
+            try
+            {
+                // remover da memória
+                db.Filmes.Remove(filme);
+                // commit na BD
+                db.SaveChanges();
+                //redirecionar para a pagina inicial 
+                return RedirectToAction("Index");
+            }
+            catch (Exception)
+            {
+                //gerar uma mensagem de erro, a ser apresentada ao utilizar
+                ModelState.AddModelError("", string.Format("Nao foi possivel remover o Filme '{0}', porque existem {1} encomendas associadas a ele. ", filme.Titulo, filme.ListaDeEncomendasFilmes.Count));
+            }
+            //reenviar os dados para a View
+
+            return View(filme);
         }
 
         protected override void Dispose(bool disposing)

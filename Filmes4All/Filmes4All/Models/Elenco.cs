@@ -13,6 +13,7 @@ namespace Filmes4All.Models
         public Elenco()
         {
             ListaDeFilmes = new HashSet<Filmes>();
+            ListaDeAtores = new HashSet<Filmes>();
         }
 
         [Key]
@@ -20,9 +21,8 @@ namespace Filmes4All.Models
 
         public string Realizador { get; set; }
 
-        public string Ator1 { get; set; }
+       // public string Ator { get; set; }
 
-        public string Ator2 { get; set; }
 
 
 
@@ -36,6 +36,8 @@ namespace Filmes4All.Models
         // com os objetos da classe Filmes
         public virtual ICollection<Filmes> ListaDeFilmes { get; set; }
         //***********************************************************************
+
+        public virtual ICollection<Filmes> ListaDeAtores { get; set; }
 
     }
 }

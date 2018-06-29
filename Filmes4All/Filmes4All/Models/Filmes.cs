@@ -20,7 +20,7 @@ namespace Filmes4All.Models
         public int ID { get; set; }
 
         [Required(ErrorMessage = "o {0} é de preenchimento obrigatório!")] // o atributo nome é de preenchimento obrigatorio
-        public string Nome { get; set; }
+        public string Titulo { get; set; }
 
         public int Ano { get; set; }
 
@@ -31,6 +31,8 @@ namespace Filmes4All.Models
         public double PrecoVenda { get; set; }
 
         public double Pontuacao { get; set; }
+
+
 
         public virtual ICollection<Carrinho> FilmesCarrinho { get; set; }
 
