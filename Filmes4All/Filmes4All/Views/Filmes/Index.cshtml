@@ -4,10 +4,10 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Lista de Filmes</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Adicionar Novo", "Create")
 </p>
 <table class="table">
     <tr>
@@ -56,9 +56,9 @@
             @Html.DisplayFor(modelItem => filme.Pontuacao)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=filme.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=filme.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=filme.ID })
+            @Html.ActionLink("Editar", "Edit", new { id=filme.ID }) |
+            @Html.ActionLink("Detalhes", "Details", new { id=filme.ID }) |
+            @Html.ActionLink("Apagar", "Delete", new { id=filme.ID })
         </td>
     </tr>
 }

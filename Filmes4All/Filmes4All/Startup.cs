@@ -65,6 +65,19 @@ namespace Filmes4All
 
 
 
+            // criar um utilizador 'Admin'
+             user = new ApplicationUser();
+            user.UserName = "admin@mail.pt";
+            user.Email = "admin@mail.pt";
+             userPWD = "123_Asd";
+             chkUser = userManager.Create(user, userPWD);
+
+            //Adicionar o Utilizador à respetiva Role-Agente-
+            if (chkUser.Succeeded)
+            {
+                var result1 = userManager.AddToRole(user.Id, "Admin");
+            }
+
 
 
         }

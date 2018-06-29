@@ -10,9 +10,19 @@ using Filmes4All.Models;
 
 namespace Filmes4All.Controllers
 {
+
+
+    [Authorize(Roles = "Clientes,Admin")]
+
+    
+
     public class FilmesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
+
+
+        [AllowAnonymous] //apesar de haver restriçoes de acesso
+                         //um user anonimo pode executar este metodo
 
         // GET: Filmes
         public ActionResult Index()
@@ -21,6 +31,7 @@ namespace Filmes4All.Controllers
         }
 
         // GET: Filmes/Details/5
+        [AllowAnonymous]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -36,17 +47,19 @@ namespace Filmes4All.Controllers
         }
 
         // GET: Filmes/Create
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             return View();
         }
 
         // POST: Filmes/Create
+        [Authorize(Roles = "Admin")]
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Nome,Ano,Capa,Descricao,PrecoVenda,Pontuacao")] Filmes filmes)
+        public ActionResult Create([Bind(Include = "ID,Titulo,Ano,Capa,Descricao,PrecoVenda,Pontuacao")] Filmes filmes)
         {
             if (ModelState.IsValid)
             {
@@ -59,6 +72,7 @@ namespace Filmes4All.Controllers
         }
 
         // GET: Filmes/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -74,11 +88,12 @@ namespace Filmes4All.Controllers
         }
 
         // POST: Filmes/Edit/5
+        [Authorize(Roles = "Admin")]
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Nome,Ano,Capa,Descricao,PrecoVenda,Pontuacao")] Filmes filmes)
+        public ActionResult Edit([Bind(Include = "ID,Titulo,Ano,Capa,Descricao,PrecoVenda,Pontuacao")] Filmes filmes)
         {
             if (ModelState.IsValid)
             {
@@ -90,6 +105,7 @@ namespace Filmes4All.Controllers
         }
 
         // GET: Filmes/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -105,6 +121,7 @@ namespace Filmes4All.Controllers
         }
 
         // POST: Filmes/Delete/5
+        [Authorize(Roles = "Admin")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

@@ -171,6 +171,8 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="Content\Template\index.html" />
+    <Content Include="Content\Template\licence.txt" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -184,6 +186,7 @@
     <Content Include="imgFilmes\Foge.jpg" />
     <Content Include="imgFilmes\Ladybird.jpg" />
     <Content Include="imgFilmes\Logan.jpg" />
+    <Content Include="imgFilmes\movies.jpg" />
     <Content Include="imgFilmes\Mulher_Maravilha.jpg" />
     <Content Include="imgFilmes\SW_TLJ.jpg" />
     <Content Include="imgFilmes\The_Florida_Project.jpg" />
@@ -292,6 +295,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\Template\images\" />
+    <Folder Include="Content\Template\scripts\" />
+    <Folder Include="Content\Template\styles\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
