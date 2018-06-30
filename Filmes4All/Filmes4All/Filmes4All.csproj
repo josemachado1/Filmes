@@ -215,6 +215,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CarrinhoesController.cs" />
     <Compile Include="Controllers\ClientesController.cs" />
     <Compile Include="Controllers\EncomendasController.cs" />
     <Compile Include="Controllers\FilmesController.cs" />
@@ -302,6 +303,11 @@
     <Content Include="Views\Participantes\Details.cshtml" />
     <Content Include="Views\Participantes\Edit.cshtml" />
     <Content Include="Views\Participantes\Index.cshtml" />
+    <Content Include="Views\Carrinhoes\Create.cshtml" />
+    <Content Include="Views\Carrinhoes\Delete.cshtml" />
+    <Content Include="Views\Carrinhoes\Details.cshtml" />
+    <Content Include="Views\Carrinhoes\Edit.cshtml" />
+    <Content Include="Views\Carrinhoes\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

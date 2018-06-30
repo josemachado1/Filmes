@@ -79,12 +79,12 @@ namespace Filmes4All.Controllers
         {
 
 
-            // determinar o ID do novo Filme
+            // determinar o ID do novo Cliente
             int novoID = 0;
             //***********************************************
             //proteger a geraçao de um novo ID
             //***********************************************
-            //determinar o nº de Filmes na tabela
+            //determinar o nº de Clientes na tabela
             if (db.Cliente.Count() == 0)
             {
                 novoID = 1;

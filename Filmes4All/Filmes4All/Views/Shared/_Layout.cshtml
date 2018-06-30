@@ -40,8 +40,19 @@
                         <li>@Html.ActionLink("UsersAdmin", "Index", "UsersAdmin")</li>
                     }
                 </ul>
-                @Html.Partial("_LoginPartial")
-            </div>
+                
+                    @Html.Partial("_LoginPartial")
+                <ul class="nav navbar-nav navbar-right">
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <li>@Html.ActionLink("Compras", "Index", "Carrinhoes")</li>
+                    }
+                    @if (User.IsInRole("Cliente"))
+                    {
+                        <li>@Html.ActionLink("Carrinho", "Index", "Carrinhoes")</li>
+                    }
+                </ul>
+</div>
         </div>
     </div>
     <div class="container body-content">

@@ -76,7 +76,14 @@ namespace Filmes4All.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
-    }
+
+        // Clientes, para associar todos os seus atributos
+        public Cliente Clientes { get; set; }
+
+    
+
+
+}
 
     public class ResetPasswordViewModel
     {

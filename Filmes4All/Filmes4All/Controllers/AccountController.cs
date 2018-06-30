@@ -15,6 +15,8 @@ namespace Filmes4All.Controllers
     [Authorize]
     public class AccountController : Controller
     {
+        private ApplicationDbContext db = new ApplicationDbContext();
+
         public AccountController()
         {
         }
@@ -148,6 +150,35 @@ namespace Filmes4All.Controllers
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
 
+            
+/*
+            model.Email = cliente.UserName;
+
+
+            // determinar o ID do novo Cliente
+            int novoID = 0;
+            //***********************************************
+            //proteger a geraçao de um novo ID
+            //***********************************************
+            //determinar o nº de Clientes na tabela
+            if (db.Cliente.Count() == 0)
+            {
+                novoID = 1;
+            }
+            else
+            {
+                novoID = db.Cliente.Max(a => a.ID) + 1;
+
+            }
+
+            // atribuir o ID ao novo filme
+            cliente.ID = novoID;
+
+
+           */
+
+
+
 
             if (ModelState.IsValid)
             {
@@ -155,6 +186,37 @@ namespace Filmes4All.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+
+
+
+                    try
+                    {
+                        //adiciona o utilizador criado à role 'Cliente'
+                        var RoleResult = await UserManager.AddToRoleAsync(user.Id, "Cliente");
+                        if (!RoleResult.Succeeded)
+                        {
+                            ModelState.AddModelError("", string.Format("Não foi possível adicionar o utilizador à função."));
+                            return View(model);
+                        }
+
+
+                        Cliente clientes = new Cliente();
+                        clientes = model.Clientes;
+                        model.Email = clientes.UserName;
+                        db.Cliente.Add(clientes);
+                        db.SaveChanges();
+                    }
+                    catch (Exception)
+                    {
+
+                        ModelState.AddModelError("", string.Format("Não foi possivel registar, verifique se os dados introduzidos estão corretos"));
+                    }
+
+
+
+                    
+
+
                     var code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking this link: <a href=\"" + callbackUrl + "\">link</a>");
