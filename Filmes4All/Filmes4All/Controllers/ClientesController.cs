@@ -18,7 +18,7 @@ namespace Filmes4All.Controllers
         public ActionResult Index(string ordenar, string pesquisar)
         {
 
-            var clientes = db.Cliente.Include(c => c.ListaDeCarrinho);
+            var clientes = db.Cliente;
 
             if (User.IsInRole("Admin")){
 
@@ -79,14 +79,44 @@ namespace Filmes4All.Controllers
         {
 
 
-
-            if (ModelState.IsValid)
+            // determinar o ID do novo Filme
+            int novoID = 0;
+            //***********************************************
+            //proteger a geraçao de um novo ID
+            //***********************************************
+            //determinar o nº de Filmes na tabela
+            if (db.Cliente.Count() == 0)
             {
-                db.Cliente.Add(cliente);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                novoID = 1;
+            }
+            else
+            {
+                novoID = db.Cliente.Max(a => a.ID) + 1;
+
             }
 
+            // atribuir o ID ao novo filme
+            cliente.ID = novoID;
+
+
+            try
+            {
+                if (ModelState.IsValid)
+                    {
+                        db.Cliente.Add(cliente);
+                        db.SaveChanges();
+                        return RedirectToAction("Index");
+                    }
+
+            }
+            catch (Exception)
+            {
+
+                //gerar uma mensagem de erro para o utilizador 
+                ModelState.AddModelError("", "Ocorreu um erro nao determinado na criaçao do novo Cliente...");
+            }
+
+            
             return View(cliente);
         }
 

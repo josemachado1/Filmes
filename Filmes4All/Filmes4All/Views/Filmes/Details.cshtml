@@ -31,7 +31,10 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Capa)
+          @*  @Html.DisplayFor(model => model.Capa) *@
+            <a href="~/imgFilmes/@Html.DisplayFor(model => model.Capa)" target="_blank">
+                <img src="~/imgFilmes/@Html.DisplayFor(model => model.Capa)" width="300" height="300" />
+            </a>
         </dd>
 
         <dt>
