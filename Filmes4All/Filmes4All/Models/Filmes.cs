@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -17,6 +18,7 @@ namespace Filmes4All.Models
         }
 
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]//impede que um novo filme tenha um id automatico
         public int ID { get; set; }
 
         [Required(ErrorMessage = "o {0} é de preenchimento obrigatório!")] // o atributo nome é de preenchimento obrigatorio

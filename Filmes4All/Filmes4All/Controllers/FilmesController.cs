@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Filmes4All.Models;
+using System.IO;
 
 namespace Filmes4All.Controllers
 {
@@ -62,7 +63,7 @@ namespace Filmes4All.Controllers
                     return View(filmes.OrderBy(c => c.Pontuacao).ToList());
 
                 default:
-                    return View(filmes.OrderBy(c => c.ID).ToList());
+                    return View(filmes.OrderBy(c => c.Ano).ToList());
             }
 
 
@@ -98,16 +99,79 @@ namespace Filmes4All.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Titulo,Ano,Capa,Descricao,PrecoVenda,Pontuacao")] Filmes filmes)
+        public ActionResult Create([Bind(Include = "ID,Titulo,Ano,Capa,Descricao,PrecoVenda,Pontuacao")] Filmes filmes,
+                                                        HttpPostedFileBase fileUploadCapa)
         {
+
+            
+
+            // determinar o ID do novo Filme
+            int novoID = 0;
+            //***********************************************
+            //proteger a geraçao de um novo ID
+            //***********************************************
+            //determinar o nº de Filmes na tabela
+            if (db.Filmes.Count() == 0)
+            {
+                novoID = 1;
+            }
+            else
+            {
+                novoID = db.Filmes.Max(a => a.ID) + 1;
+
+            }
+
+            // atribuir o ID ao novo filme
+            filmes.ID = novoID;
+
+
+
+            string nomeCapa = "Filme_" + novoID + ".jpg";
+            string caminhoParaFotografia = Path.Combine(Server.MapPath("~/imgFilmes/"), nomeCapa); // indica onde a imagem será guardada
+
+            if (fileUploadCapa != null)
+            {
+                // guardar o nome da imagem na BD
+                filmes.Capa = nomeCapa;
+            }
+            else
+            {
+                // não há imagem...
+                ModelState.AddModelError("", "Não foi fornecida uma imagem..."); // gera MSG de erro
+                return View(filmes); // reenvia os dados do 'Agente' para a View
+            }
+
+            try
+            {
+                // adiciona na estrutura de dados, na memória do servidor,
+                // o objeto Agentes
+                db.Filmes.Add(filmes);
+                // faz 'commit' na BD
+                db.SaveChanges();
+                // guardar a imagem no disco rígido
+                fileUploadCapa.SaveAs(caminhoParaFotografia);
+
+                // redireciona o utilizador para a página de início
+                return RedirectToAction("Index");
+
+            }
+            catch (Exception)
+            {
+
+                //gerar uma mensagem de erro para o utilizador 
+                ModelState.AddModelError("", "Ocorreu um erro nao determinado na criaçao do novo Filme...");
+            }
+/*
             if (ModelState.IsValid)
             {
                 db.Filmes.Add(filmes);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            */
 
             return View(filmes);
+           
         }
 
         // GET: Filmes/Edit/5
