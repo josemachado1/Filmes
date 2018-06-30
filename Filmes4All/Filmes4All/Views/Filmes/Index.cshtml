@@ -62,6 +62,9 @@
                     </td>
                     <td class="colCentro">@Html.DisplayFor(modelItem => item.PrecoVenda)</td>
                     <td class="colCentro">@Html.DisplayFor(modelItem => item.Pontuacao)</td>
+                    <td class="colCentro">
+                        @Html.ActionLink("Detalhes", "Details", new { id = item.ID }) 
+                    </td>
 
                     @if (User.IsInRole("Admin"))
                     {
@@ -72,6 +75,7 @@
                             @Html.ActionLink("Eliminar", "Delete", new { id = item.ID })
                         </td>
                     }
+
     
                 </tr>
             }

@@ -17,7 +17,12 @@ namespace Filmes4All.Controllers
         // GET: Encomendas
         public ActionResult Index()
         {
+
+
+
             return View(db.Encomenda.ToList());
+            // lista apenas os dados do cliente que se autenticou
+            //return View(db.Cliente.Where(c => c.UserName.Equals(User.Identity.Name)).ToList());
         }
 
         // GET: Encomendas/Details/5
