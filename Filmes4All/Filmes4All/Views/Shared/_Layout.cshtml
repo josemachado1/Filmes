@@ -4,7 +4,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
-    <link rel="icon" type="image/jpg" href="~/imgFilmes/movies.jpg" />
+    <link rel="icon" type="image/jpg" href="~/imgFilmes/movies4.jpg"/>
+    <link rel="stylesheet" href="~/Content/Template/styles/layout.css" type="text/css">
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
@@ -23,6 +24,13 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Filmes", "Index", "Filmes")</li>
+                    @if (User.IsInRole("Admin")) { 
+                    <li>@Html.ActionLink("Clientes", "Index", "Clientes")</li>
+                    }
+                    @if (User.IsInRole("Cliente"))
+                    {
+                        <li>@Html.ActionLink("Perfil", "Index", "Clientes")</li>
+                    }
                     <li>@Html.ActionLink("Sobre", "About", "Home")</li>
                     <li>@Html.ActionLink("Contactos", "Contact", "Home")</li>
 

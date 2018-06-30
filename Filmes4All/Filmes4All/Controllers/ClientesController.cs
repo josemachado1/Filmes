@@ -15,9 +15,38 @@ namespace Filmes4All.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Clientes
-        public ActionResult Index()
+        public ActionResult Index(string ordenar, string pesquisar)
         {
-            return View(db.Cliente.ToList());
+
+            var clientes = db.Cliente.Include(c => c.ListaDeCarrinho);
+
+            if (User.IsInRole("Admin")){
+
+               
+                ViewBag.OrdNome = ordenar == "nomeAsc" ? "nomeDesc" : "nomeAsc";
+
+                // permite efetuar a pesquisa de um sócio pelo nome
+                if (!String.IsNullOrEmpty(pesquisar))
+                {
+                    return View(clientes.Where(c => c.Nome.ToUpper().Contains(pesquisar.ToUpper())));
+                }
+
+                // ordena a lista de sócios de forma ascendente ou descendente, por coluna
+                switch (ordenar)
+                {
+                    case "nomeDesc":
+                        return View(clientes.OrderByDescending(c => c.Nome).ToList());
+                    case "nomeAsc":
+                        return View(clientes.OrderBy(c => c.Nome).ToList());
+                    default:
+                        return View(clientes.OrderBy(s => s.ID).ToList());
+                }
+            }
+
+            // lista apenas os dados do cliente que se autenticou
+            return View(db.Cliente.Where(c => c.UserName.Equals(User.Identity.Name)).ToList());
+
+            // return View(db.Cliente.ToList());
         }
 
         // GET: Clientes/Details/5
@@ -48,6 +77,9 @@ namespace Filmes4All.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID,Nome,Telemovel,DataNascimento,Morada,CodPostal,UserName")] Cliente cliente)
         {
+
+
+
             if (ModelState.IsValid)
             {
                 db.Cliente.Add(cliente);

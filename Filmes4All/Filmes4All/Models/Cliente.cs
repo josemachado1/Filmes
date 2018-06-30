@@ -31,15 +31,17 @@ namespace Filmes4All.Models
 
         public string CodPostal { get; set; }
 
+                //********************************************************************************
+        //criar uma FK para o utilizador autenticado
+
+        public string UserName { get; set; }
+
         public virtual ICollection<Encomenda> ListaDeEncomendasClientes { get; set; }
 
         public virtual ICollection<Carrinho> ListaDeCarrinho { get; set; }
 
 
-        //********************************************************************************
-        //criar uma FK para o utilizador autenticado
 
-        public string UserName { get; set; }
 
 
     }

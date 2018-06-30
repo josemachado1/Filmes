@@ -187,6 +187,10 @@
     <Content Include="imgFilmes\Ladybird.jpg" />
     <Content Include="imgFilmes\Logan.jpg" />
     <Content Include="imgFilmes\movies.jpg" />
+    <Content Include="imgFilmes\movies2.jpg" />
+    <Content Include="imgFilmes\movies3.png" />
+    <Content Include="imgFilmes\movies4.jpg" />
+    <Content Include="imgFilmes\movies5.jpg" />
     <Content Include="imgFilmes\Mulher_Maravilha.jpg" />
     <Content Include="imgFilmes\SW_TLJ.jpg" />
     <Content Include="imgFilmes\The_Florida_Project.jpg" />
@@ -212,9 +216,11 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ClientesController.cs" />
+    <Compile Include="Controllers\EncomendasController.cs" />
     <Compile Include="Controllers\FilmesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ParticipantesController.cs" />
     <Compile Include="Controllers\RolesAdminController.cs" />
     <Compile Include="Controllers\UserAdminController.cs" />
     <Compile Include="Global.asax.cs">
@@ -286,6 +292,16 @@
     <Content Include="Views\Clientes\Details.cshtml" />
     <Content Include="Views\Clientes\Edit.cshtml" />
     <Content Include="Views\Clientes\Index.cshtml" />
+    <Content Include="Views\Encomendas\Create.cshtml" />
+    <Content Include="Views\Encomendas\Delete.cshtml" />
+    <Content Include="Views\Encomendas\Details.cshtml" />
+    <Content Include="Views\Encomendas\Edit.cshtml" />
+    <Content Include="Views\Encomendas\Index.cshtml" />
+    <Content Include="Views\Participantes\Create.cshtml" />
+    <Content Include="Views\Participantes\Delete.cshtml" />
+    <Content Include="Views\Participantes\Details.cshtml" />
+    <Content Include="Views\Participantes\Edit.cshtml" />
+    <Content Include="Views\Participantes\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

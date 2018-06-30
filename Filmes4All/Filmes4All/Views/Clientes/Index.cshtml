@@ -4,60 +4,161 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Nome)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Telemovel)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DataNascimento)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Morada)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CodPostal)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UserName)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nome)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Telemovel)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DataNascimento)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Morada)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CodPostal)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserName)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
-    </tr>
+ <!-- título -->
+@if (User.IsInRole("Admin"))
+{
+    <div class="titulo"><h3>LISTA DE CLIENTES</h3></div>
+}
+@if (User.IsInRole("Cliente"))
+{
+    <div class="titulo"><h3>DADOS PESSOAIS</h3></div>
 }
 
-</table>
+@if (User.IsInRole("Admin") )
+{
+        <!-- criar novo cliente -->
+    <div class="col-md-12 divBtnCentro">
+        <input type="button" class="btn btn-primary" value="Criar Novo Cliente" onclick="location.href='@Url.Action("Create", "Clientes")'" />
+    </div>
+}
+
+
+@if (User.IsInRole("Admin"))
+{
+        <!-- interface de pesquisa -->
+    using (Html.BeginForm())
+    {
+        <p class="interfPesq">
+            @Html.TextBox("pesquisar", "", new { @class = "form-control pesq", @maxlength = "30", @placeholder = "Pesquisa por nome" })
+            <input type="submit" class="btn btn-primary" value="Pesquisar" />
+        </p>
+    }
+}
+
+
+
+
+
+
+
+
+
+<div class="centrarTab">
+    <div class="displayTab">
+        <!-- tabela de sócios -->
+        <table class="table">
+            <!-- cabeçalhos -->
+            <tr>
+                <th class="colCentro">@Html.ActionLink("Nome", "Index", new { ordenar = ViewBag.OrdNome })</th>
+                <th class="colCentro">@Html.DisplayNameFor(model => model.Telemovel)</th>
+                <th class="colCentro">@Html.DisplayNameFor(model => model.Morada)</th>
+                <th class="colCentro">@Html.DisplayNameFor(model => model.CodPostal)</th>
+                <th class="colCentro">@Html.DisplayNameFor(model => model.DataNascimento)</th>
+               
+                @if (User.IsInRole("Admin"))
+                {
+                    <th class="colCentro">@Html.DisplayNameFor(model => model.UserName)</th>
+                    <th class="colCentro">Opções de Gestão</th>
+                }
+                @if (User.IsInRole("Cliente"))
+                {
+                    <th class="colCentro">Opções de Consulta</th>
+                }
+            </tr>
+            <!-- dados dos sócios -->
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td class="colEsq">@Html.DisplayFor(modelItem => item.Nome)</td>
+                    <td class="colCentro">@Html.DisplayFor(modelItem => item.Telemovel)</td>
+                    <td class="colCentro">@Html.DisplayFor(modelItem => item.Morada)</td>
+                    <td class="colCentro">@Html.DisplayFor(modelItem => item.CodPostal)</td>
+                    <td class="colCentro">@Html.DisplayFor(modelItem => item.DataNascimento)</td>
+                    
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <td class="colCentro">@Html.DisplayFor(modelItem => item.UserName)</td>
+                            <!-- opções de gestão -->
+                        <td class="colCentro">
+                            @Html.ActionLink("Editar", "Edit", new { id = item.ID }) |
+                            @Html.ActionLink("Detalhes", "Details", new { id = item.ID }) |
+                            @Html.ActionLink("Eliminar", "Delete", new { id = item.ID })
+                        </td>
+                    }
+                    @if (User.IsInRole("Cliente"))
+                    {
+                        <td class="colCentro">
+                            @Html.ActionLink("Editar", "Edit", new { id = item.ID }) |
+                            @Html.ActionLink("Detalhes", "Details", new { id = item.ID })
+                        </td>
+                    }
+                </tr>
+            }
+        </table>
+    </div>
+</div>   
+
+
+
+
+
+
+
+
+
+
+@*
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Telemovel)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataNascimento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Morada)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CodPostal)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserName)
+            </th>
+            <th></th>
+        </tr>
+
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Telemovel)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataNascimento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Morada)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CodPostal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+                @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+            </td>
+        </tr>
+    }
+
+    </table>
+*@

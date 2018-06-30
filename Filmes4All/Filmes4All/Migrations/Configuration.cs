@@ -81,12 +81,12 @@ namespace Filmes4All.Migrations
             //*********************************************************************
             // adiciona Cliente
             var cliente = new List<Cliente> {
-   new Cliente {ID=1, Nome=" João Santos", Telemovel="912039720", DataNascimento=new DateTime(1965,2,21), Morada="Praceta Conde Arnoso 98 - Lisboa", CodPostal="2610-043" },
-   new Cliente {ID=2, Nome=" Daniel Soares", Telemovel="928155823", DataNascimento=new DateTime(1966,7,19), Morada="R Principal 107 - Guarda", CodPostal="6270-107"  },
-   new Cliente {ID=3, Nome=" Adriana Rodrigues", Telemovel="922775155", DataNascimento=new DateTime(1981,12,3), Morada="Avenida Julio S Dias 55 - Porto", CodPostal="4480-673"  },
-   new Cliente {ID=4, Nome=" Rosa Fernandes", Telemovel="913055221", DataNascimento=new DateTime(1977,9,24), Morada="Rua Telheiro 104 - Setubal", CodPostal="2901-901"  },
-   new Cliente {ID=5, Nome=" Carolina Oliveira", Telemovel="938070118", DataNascimento=new DateTime(1953,8,17), Morada="R Centieira 26 - Coimbra", CodPostal="3420-341"  },
-   new Cliente {ID=6, Nome=" César Sousa", Telemovel="916118589", DataNascimento=new DateTime(1964,8,22), Morada="Avenida Visconde Valmor 14 - Lisboa", CodPostal="1000-291"  }
+   new Cliente {ID=1, Nome=" João Santos", Telemovel="912039720", DataNascimento=new DateTime(1965,2,21), Morada="Praceta Conde Arnoso 98 - Lisboa", CodPostal="2610-043", UserName="joaoSantos@mail.pt" },
+   new Cliente {ID=2, Nome=" Daniel Soares", Telemovel="928155823", DataNascimento=new DateTime(1966,7,19), Morada="R Principal 107 - Guarda", CodPostal="6270-107", UserName="danielSoares@mail.pt"  },
+   new Cliente {ID=3, Nome=" Adriana Rodrigues", Telemovel="922775155", DataNascimento=new DateTime(1981,12,3), Morada="Avenida Julio S Dias 55 - Porto", CodPostal="4480-673", UserName="noEmail@mail.pt"  },
+   new Cliente {ID=4, Nome=" Rosa Fernandes", Telemovel="913055221", DataNascimento=new DateTime(1977,9,24), Morada="Rua Telheiro 104 - Setubal", CodPostal="2901-901", UserName="noEmail@mail.pt"  },
+   new Cliente {ID=5, Nome=" Carolina Oliveira", Telemovel="938070118", DataNascimento=new DateTime(1953,8,17), Morada="R Centieira 26 - Coimbra", CodPostal="3420-341", UserName="noEmail@mail.pt"  },
+   new Cliente {ID=6, Nome=" César Sousa", Telemovel="916118589", DataNascimento=new DateTime(1964,8,22), Morada="Avenida Visconde Valmor 14 - Lisboa", CodPostal="1000-291", UserName="noEmail@mail.pt"  }
 
 };
             cliente.ForEach(cc => context.Cliente.AddOrUpdate(c => c.ID, cc));
