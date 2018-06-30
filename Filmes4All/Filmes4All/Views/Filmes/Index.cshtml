@@ -6,9 +6,89 @@
 
 <h2>Lista de Filmes</h2>
 
-<p>
-    @Html.ActionLink("Adicionar Novo", "Create")
+@if (User.IsInRole("Admin"))
+{
+        <!-- Adicionar novo filme -->
+    <div class="col-md-12 divBtnCentro">
+        <input type="button" class="btn btn-primary" value="Adicionar Novo Filme" onclick="location.href='@Url.Action("Create", "Filmes")'" />
+    </div>
+}
+<br />
+
+
+        <!-- interface de pesquisa -->
+    @using (Html.BeginForm())
+    {
+<p class="interfPesq">
+    @Html.TextBox("pesquisar", "", new { @class = "form-control pesq", @maxlength = "30", @placeholder = "Pesquisa por nome" })
+    <input type="submit" class="btn btn-primary" value="Pesquisar" />
 </p>
+    }
+
+
+
+
+
+
+
+<div class="centrarTab">
+    <div class="displayTab">
+        <!-- tabela de Filmes -->
+        <table class="table">
+            <!-- cabeçalhos -->
+            <tr>
+                <th class="colCentro">@Html.ActionLink("Titulo", "Index", new { ordenar = ViewBag.OrdTitulo })</th>
+                <th class="colCentro">@Html.ActionLink("Ano", "Index", new { ordenar = ViewBag.OrdAno })</th>
+                <th class="colCentro">@Html.DisplayNameFor(model => model.Capa)</th>
+                <th class="colCentro">@Html.ActionLink("PreçoVenda", "Index", new { ordenar = ViewBag.OrdPreco })</th>
+                <th class="colCentro">@Html.ActionLink("Pontuação", "Index", new { ordenar = ViewBag.OrdPontuacao })</th>
+
+                @if (User.IsInRole("Admin"))
+                {
+                    <th class="colCentro">Opções de Gestão</th>
+                }
+
+            </tr>
+            <!-- dados dos filmes -->
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td class="colEsq">@Html.DisplayFor(modelItem => item.Titulo)</td>
+                    <td class="colCentro">@Html.DisplayFor(modelItem => item.Ano)</td>
+                    <td class="colCentro">
+                        <a href="~/imgFilmes/@item.Capa" target="_blank">
+                            <img src="~/imgFilmes/@item.Capa" width="100" height="100" />
+                        </a>
+                    </td>
+                    <td class="colCentro">@Html.DisplayFor(modelItem => item.PrecoVenda)</td>
+                    <td class="colCentro">@Html.DisplayFor(modelItem => item.Pontuacao)</td>
+
+                    @if (User.IsInRole("Admin"))
+                    {
+                            <!-- opções de gestão -->
+                        <td class="colCentro">
+                            @Html.ActionLink("Editar", "Edit", new { id = item.ID }) |
+                            @Html.ActionLink("Detalhes", "Details", new { id = item.ID }) |
+                            @Html.ActionLink("Eliminar", "Delete", new { id = item.ID })
+                        </td>
+                    }
+    
+                </tr>
+            }
+        </table>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+@*
+
 <table class="table">
     <tr>
         <th>
@@ -41,10 +121,12 @@
             @Html.DisplayFor(modelItem => filme.Ano)
         </td>
         <td>
-           @* @Html.DisplayFor(modelItem => filme.Capa)*@
+           
             <a href="~/imgFilmes/@filme.Capa" target="_blank">
                 <img src="~/imgFilmes/@filme.Capa" width="100" height="100" />
             </a>
+
+
         </td>
         <td>
             @Html.DisplayFor(modelItem => filme.Descricao)
@@ -64,3 +146,5 @@
 }
 
 </table>
+
+*@

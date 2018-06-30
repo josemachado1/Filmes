@@ -25,13 +25,13 @@ namespace Filmes4All.Controllers
                
                 ViewBag.OrdNome = ordenar == "nomeAsc" ? "nomeDesc" : "nomeAsc";
 
-                // permite efetuar a pesquisa de um sócio pelo nome
+                // permite efetuar a pesquisa de um cliente pelo nome
                 if (!String.IsNullOrEmpty(pesquisar))
                 {
                     return View(clientes.Where(c => c.Nome.ToUpper().Contains(pesquisar.ToUpper())));
                 }
 
-                // ordena a lista de sócios de forma ascendente ou descendente, por coluna
+                // ordena a lista de clientes de forma ascendente ou descendente, por nome
                 switch (ordenar)
                 {
                     case "nomeDesc":
@@ -39,7 +39,7 @@ namespace Filmes4All.Controllers
                     case "nomeAsc":
                         return View(clientes.OrderBy(c => c.Nome).ToList());
                     default:
-                        return View(clientes.OrderBy(s => s.ID).ToList());
+                        return View(clientes.OrderBy(c => c.ID).ToList());
                 }
             }
 

@@ -25,9 +25,48 @@ namespace Filmes4All.Controllers
                          //um user anonimo pode executar este metodo
 
         // GET: Filmes
-        public ActionResult Index()
+        public ActionResult Index(string ordenar, string pesquisar)
         {
-            return View(db.Filmes.ToList());
+
+            var filmes = db.Filmes.Include(f => f.ListaDeFilmesParticipantes);
+
+            ViewBag.OrdTitulo = ordenar == "nomeAsc" ? "nomeDesc" : "nomeAsc";
+            ViewBag.OrdAno = ordenar == "anoAsc" ? "anoDesc" : "anoAsc";
+            ViewBag.OrdPreco = ordenar == "precoAsc" ? "precoDesc" : "precoAsc";
+            ViewBag.OrdPontuacao = ordenar == "pontuacaoAsc" ? "pontuacaoDesc" : "pontuacaoAsc";
+
+            // permite efetuar a pesquisa de um filme pelo titulo
+            if (!String.IsNullOrEmpty(pesquisar))
+            {
+                return View(filmes.Where(f => f.Titulo.ToUpper().Contains(pesquisar.ToUpper())));
+            }
+
+            // ordena a lista de filmes de forma ascendente ou descendente, por coluna
+            switch (ordenar)
+            {
+                case "nomeDesc":
+                    return View(filmes.OrderByDescending(c => c.Titulo).ToList());
+                case "nomeAsc":
+                    return View(filmes.OrderBy(c => c.Titulo).ToList());
+                case "anoDesc":
+                    return View(filmes.OrderByDescending(c => c.Ano).ToList());
+                case "anoAsc":
+                    return View(filmes.OrderBy(c => c.Ano).ToList());
+                case "precoDesc":
+                    return View(filmes.OrderByDescending(c => c.PrecoVenda).ToList());
+                case "precoAsc":
+                    return View(filmes.OrderBy(c => c.PrecoVenda).ToList());
+                case "pontuacaoDesc":
+                    return View(filmes.OrderByDescending(c => c.Pontuacao).ToList());
+                case "pontuacaoAsc":
+                    return View(filmes.OrderBy(c => c.Pontuacao).ToList());
+
+                default:
+                    return View(filmes.OrderBy(c => c.ID).ToList());
+            }
+
+
+            //return View(db.Filmes.ToList());
         }
 
         // GET: Filmes/Details/5
