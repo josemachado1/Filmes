@@ -64,15 +64,6 @@
         </dd>
 
 
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ListaDeFilmesParticipantes)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ListaDeFilmesParticipantes)
-        </dd>
-
         
         <p class="button">
             @Html.ActionLink("Adicionar ao Carrinho", "Index", "Carrinhoes", new { id = Model.ID }, "")
@@ -84,6 +75,10 @@
 @*<input type="button" class="btn btn-primary" value="Adicionar ao Carrinho" onclick="" />*@
 
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @if (User.IsInRole("Cliente"))
+    {
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ID })
+    }
+    
     @Html.ActionLink("Back to List", "Index")
 </p>

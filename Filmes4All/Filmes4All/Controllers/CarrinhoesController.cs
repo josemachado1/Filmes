@@ -12,6 +12,7 @@ namespace Filmes4All.Controllers
 {
     public class CarrinhoesController : Controller
     {
+        // cria um novo objeto que representa a BD
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Carrinhoes

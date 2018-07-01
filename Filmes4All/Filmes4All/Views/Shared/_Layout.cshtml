@@ -30,6 +30,7 @@
                     @if (User.IsInRole("Cliente"))
                     {
                         <li>@Html.ActionLink("Perfil", "Index", "Clientes")</li>
+                        <li>@Html.ActionLink("Historico", "Index", "Encomendas")</li>
                     }
                     <li>@Html.ActionLink("Sobre", "About", "Home")</li>
                     <li>@Html.ActionLink("Contactos", "Contact", "Home")</li>
@@ -38,7 +39,9 @@
                     @if (Request.IsAuthenticated && User.IsInRole("Admin")) {
                         <li>@Html.ActionLink("RolesAdmin", "Index", "RolesAdmin")</li>
                         <li>@Html.ActionLink("UsersAdmin", "Index", "UsersAdmin")</li>
+                        <li>@Html.ActionLink("ComprasRegistadas", "Index", "Encomendas")</li>
                     }
+                  
                 </ul>
                 
                     @Html.Partial("_LoginPartial")

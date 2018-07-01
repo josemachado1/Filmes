@@ -13,6 +13,7 @@ using System.Web.Mvc;
 namespace Filmes4All.Controllers
 {
     [Authorize]
+    // cria um novo objeto que representa a BD
     public class AccountController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -40,7 +41,7 @@ namespace Filmes4All.Controllers
             }
         }
 
-        //
+        //Vai mostar a View do Login
         // GET: /Account/Login
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
@@ -60,7 +61,8 @@ namespace Filmes4All.Controllers
             private set { _signInManager = value; }
         }
 
-        //
+        //Valida os dados de login, caso sejam o utilizador pode entrar no sistema, caso nao sejam validos uma mensagem 
+        //de erro aparcera no ecran.
         // POST: /Account/Login
         [HttpPost]
         [AllowAnonymous]
@@ -85,7 +87,7 @@ namespace Filmes4All.Controllers
                     return RedirectToAction("SendCode", new { ReturnUrl = returnUrl });
                 case SignInStatus.Failure:
                 default:
-                    ModelState.AddModelError("", "Invalid login attempt.");
+                    ModelState.AddModelError("", "Login inválido");
                     return View(model);
             }
         }
@@ -134,7 +136,7 @@ namespace Filmes4All.Controllers
             }
         }
 
-        //
+        //Vai mostar a View do Register
         // GET: /Account/Register
         [AllowAnonymous]
         public ActionResult Register()
@@ -142,7 +144,7 @@ namespace Filmes4All.Controllers
             return View();
         }
 
-        //
+        //Verifica se todos os dados foram introduzidos corretamente e caso tenham sido cria um utilizador na role 'Cliente'
         // POST: /Account/Register
         [HttpPost]
         [AllowAnonymous]

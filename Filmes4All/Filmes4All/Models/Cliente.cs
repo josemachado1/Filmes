@@ -18,18 +18,34 @@ namespace Filmes4All.Models
 
 
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]//impede que um novo filme tenha um id automatico
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]//impede que um novo cliente tenha um id automatico
         public int ID { get; set; }
 
-        [Required(ErrorMessage = "o {0} é de preenchimento obrigatório!")] // o atributo nome é de preenchimento obrigatorio
+        [StringLength(50)]
+        [RegularExpression("[A-ZÁÂÉÍÓÚ][a-záàâãäèéêëìíîïòóôõöùúûüç]+((-| )((da|de|do|das|dos) )?[A-ZÁÂÉÍÓÚ][a-záàâãäèéêëìíîïòóôõöùúûüç]+)+", ErrorMessage = "O {0} é constituído apenas por letras e começa obrigatoriamente por uma maiúscula.")]
+        [Required(ErrorMessage = "O {0} é obrigatório!")]
+        [Display(Name = "Nome Completo")]
         public string Nome { get; set; }
 
+        [StringLength(9)]
+        [RegularExpression("[0-9]{9}", ErrorMessage = "O {0} deve ter 9 caracteres numéricos.")]
+        [Required(ErrorMessage = "O {0} é obrigatório!")]
+        [Display(Name = "Telemóvel")]
         public string Telemovel { get; set; }
 
+        [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}", ApplyFormatInEditMode = true)]
+        [Required(ErrorMessage = "A {0} é obrigatória!")]
+        [Display(Name = "Data Nascimento")]
         public DateTime DataNascimento { get; set; }
-        
+
+        [StringLength(80)]
+        [Required(ErrorMessage = "A {0} é obrigatória!")]
         public string Morada { get; set; }
 
+        [StringLength(50)]
+        [RegularExpression("[0-9]{4}-[0-9]{3}", ErrorMessage = "O {0} deve ter o formato 0000-000.")]
+        [Required(ErrorMessage = "O {0} é obrigatório!")]
+        [Display(Name = "Código Postal")]
         public string CodPostal { get; set; }
 
                 //********************************************************************************

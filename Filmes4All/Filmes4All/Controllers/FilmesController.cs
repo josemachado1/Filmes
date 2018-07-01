@@ -25,6 +25,8 @@ namespace Filmes4All.Controllers
         [AllowAnonymous] //apesar de haver restriçoes de acesso
                          //um user anonimo pode executar este metodo
 
+        //Vai mostar a View do Index, podendo ordenar a lista de filmes por Titulo, Ano, Preço e Pontuação,
+        //existe ainda uma barra de pesquisa
         // GET: Filmes
         public ActionResult Index(string ordenar, string pesquisar)
         {
@@ -163,14 +165,7 @@ namespace Filmes4All.Controllers
                 //gerar uma mensagem de erro para o utilizador 
                 ModelState.AddModelError("", "Ocorreu um erro nao determinado na criaçao do novo Filme...");
             }
-/*
-            if (ModelState.IsValid)
-            {
-                db.Filmes.Add(filmes);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            */
+
 
             return View(filmes);
            
