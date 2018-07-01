@@ -17,6 +17,8 @@ namespace Filmes4All.Controllers
         // GET: Carrinhoes
         public ActionResult Index()
         {
+
+
             var carrinho = db.Carrinho.Include(c => c.Cliente);
             // return View(carrinho.ToList());
             return View(db.Carrinho.Where(c => c.Cliente.UserName.Equals(User.Identity.Name)).ToList());

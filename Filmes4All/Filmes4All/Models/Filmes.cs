@@ -30,11 +30,11 @@ namespace Filmes4All.Models
 
         public string Descricao { get; set; }
 
-        public double PrecoVenda { get; set; }
+        public decimal PrecoVenda { get; set; }
 
         public double Pontuacao { get; set; }
 
-
+       // public Participantes Participante { get; set; }
 
         public virtual ICollection<Carrinho> FilmesCarrinho { get; set; }
 

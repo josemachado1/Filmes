@@ -151,32 +151,6 @@ namespace Filmes4All.Controllers
         {
 
             
-/*
-            model.Email = cliente.UserName;
-
-
-            // determinar o ID do novo Cliente
-            int novoID = 0;
-            //***********************************************
-            //proteger a geraçao de um novo ID
-            //***********************************************
-            //determinar o nº de Clientes na tabela
-            if (db.Cliente.Count() == 0)
-            {
-                novoID = 1;
-            }
-            else
-            {
-                novoID = db.Cliente.Max(a => a.ID) + 1;
-
-            }
-
-            // atribuir o ID ao novo filme
-            cliente.ID = novoID;
-
-
-           */
-
 
 
 
@@ -195,7 +169,7 @@ namespace Filmes4All.Controllers
                         var RoleResult = await UserManager.AddToRoleAsync(user.Id, "Cliente");
                         if (!RoleResult.Succeeded)
                         {
-                            ModelState.AddModelError("", string.Format("Não foi possível adicionar o utilizador à função."));
+                            ModelState.AddModelError("", string.Format("Não foi possível adicionar o utilizador à função pretendida"));
                             return View(model);
                         }
 

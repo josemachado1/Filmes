@@ -55,7 +55,6 @@ namespace Filmes4All.Models
         public virtual DbSet<FilmesParticipantes> FilmesParticipantes { get; set; } // tabela que irá exprimir o relacionamento entre as classes Participantes e Filmes
 
 
-
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             //  modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();  // impede a EF de 'pluralizar' os nomes das tabelas
@@ -64,7 +63,6 @@ namespace Filmes4All.Models
 
             base.OnModelCreating(modelBuilder);
         }
-
 
     }
 }
